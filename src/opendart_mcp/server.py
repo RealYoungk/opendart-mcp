@@ -16,7 +16,7 @@ from opendart_mcp.tools import (
 )
 
 
-def create_server(api_key: str) -> FastMCP:
+def create_server(api_key: str, host: str = "0.0.0.0", port: int = 8000) -> FastMCP:
     mcp = FastMCP(
         "OpenDART",
         instructions=(
@@ -25,6 +25,8 @@ def create_server(api_key: str) -> FastMCP:
             "증권신고서 등 총 83개의 API를 지원합니다. "
             "corp_code(고유번호)는 get_corp_code 또는 search_disclosure로 조회할 수 있습니다."
         ),
+        host=host,
+        port=port,
     )
     client = OpenDartClient(api_key)
 
@@ -69,10 +71,10 @@ def main():
     if not args.api_key:
         parser.error("OPENDART_API_KEY 환경변수 또는 --api-key 옵션이 필요합니다.")
 
-    server = create_server(args.api_key)
+    server = create_server(args.api_key, host=args.host, port=args.port)
 
     if args.transport == "sse":
-        server.run(transport="sse", host=args.host, port=args.port)
+        server.run(transport="sse")
     else:
         server.run()
 
