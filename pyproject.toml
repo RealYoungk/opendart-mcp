@@ -2,11 +2,36 @@
 name = "opendart-mcp"
 version = "0.1.0"
 description = "OpenDART (DART 전자공시시스템) MCP Server - 금융감독원 공시정보 API"
+readme = "README.md"
+license = "MIT"
 requires-python = ">=3.10"
+authors = [
+    { name = "RealYoungk", email = "youngjin5394@gmail.com" },
+]
+keywords = ["mcp", "dart", "opendart", "korea", "disclosure", "financial", "fss"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Office/Business :: Financial",
+]
 dependencies = [
     "mcp[cli]>=1.0.0",
     "httpx>=0.27.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/RealYoungk/opendart-mcp"
+Repository = "https://github.com/RealYoungk/opendart-mcp"
+Issues = "https://github.com/RealYoungk/opendart-mcp/issues"
+
+[project.scripts]
+opendart-mcp = "opendart_mcp.server:main"
 
 [build-system]
 requires = ["hatchling"]
